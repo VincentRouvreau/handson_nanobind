@@ -5,6 +5,9 @@
 #include <boost/filesystem.hpp>
 #include <string>
 
+// Windows :facepalm:
+#undef snprintf
+
 namespace nb = nanobind;
 
 using namespace nb::literals;
