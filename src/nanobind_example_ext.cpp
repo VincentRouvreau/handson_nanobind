@@ -1,12 +1,12 @@
+// Windows :facepalm:
+#undef snprintf
+
 #include <nanobind/nanobind.h>
 #include <nanobind/stl/string.h>
 
 // Some external c++ library
 #include <boost/filesystem.hpp>
 #include <string>
-
-// Windows :facepalm:
-#undef snprintf
 
 namespace nb = nanobind;
 
