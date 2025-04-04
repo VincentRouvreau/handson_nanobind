@@ -1,0 +1,71 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  build_wheels:
+    name: Build wheel for cp${{ matrix.python }}-${{ matrix.platform_id }}-${{ matrix.manylinux_image }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      # Ensure that a wheel builder finishes even if another fails
+      fail-fast: false
+      matrix:
+        include:
+          # MacOS x86_64
+          - os: macos-13
+            python: 310
+            platform_id: macosx_x86_64
+          - os: macos-13
+            python: 311
+            platform_id: macosx_x86_64
+          - os: macos-13
+            python: 312
+            platform_id: macosx_x86_64
+          - os: macos-13
+            python: 313
+            platform_id: macosx_x86_64
+          - os: macos-13
+            python: 313t
+            platform_id: macosx_x86_64
+            free_threaded_support: True
+
+          # MacOS arm64
+          - os: macos-14
+            python: 310
+            platform_id: macosx_arm64
+          - os: macos-14
+            python: 311
+            platform_id: macosx_arm64
+          - os: macos-14
+            python: 312
+            platform_id: macosx_arm64
+          - os: macos-14
+            python: 313
+            platform_id: macosx_arm64
+          - os: macos-14
+            python: 313t
+            platform_id: macosx_arm64
+            free_threaded_support: True
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install third parties
+        run: |
+          brew update
+          brew install boost
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.23.2
+        # env:
+        #   CIBW_SOME_OPTION: value
+        #    ...
+        # with:
+        #   package-dir: .
+        #   output-dir: wheelhouse
+        #   config-file: "{package}/pyproject.toml"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
+          path: ./wheelhouse/*.whl
