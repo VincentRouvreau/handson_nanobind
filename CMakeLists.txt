@@ -33,6 +33,10 @@ find_package(Python 3.8
 # Import nanobind through CMake's find_package mechanism
 find_package(nanobind CONFIG REQUIRED)
 
+set (CMAKE_CXX_STANDARD 17)
+
+find_package(Boost 1.71.0 OPTIONAL_COMPONENTS filesystem)
+
 # We are now ready to compile the actual extension module
 nanobind_add_module(
   # Name of the extension
@@ -54,6 +58,7 @@ nanobind_add_module(
   # Source code goes here
   src/nanobind_example_ext.cpp
 )
+target_link_libraries(nanobind_example_ext PRIVATE Boost::filesystem)
 
 # Install directive for scikit-build-core
 install(TARGETS nanobind_example_ext LIBRARY DESTINATION nanobind_example)

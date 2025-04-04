@@ -8,15 +8,11 @@ version = "0.0.1"
 description = "An example minimal project that compiles bindings using nanobind and scikit-build"
 readme = "README.md"
 requires-python = ">=3.8"
-authors = [
-    { name = "Wenzel Jakob", email = "wenzel.jakob@epfl.ch" },
-]
-classifiers = [
-    "License :: OSI Approved :: BSD License",
-]
+authors = [{ name = "Wenzel Jakob", email = "wenzel.jakob@epfl.ch" }]
+classifiers = ["License :: OSI Approved :: BSD License"]
 
 [project.urls]
-Homepage = "https://github.com/wjakob/nanobind_example"
+Homepage = "https://github.com/VincentRouvreau/handson_nanobind/"
 
 
 [tool.scikit-build]
@@ -38,7 +34,7 @@ test-command = "pytest {project}/tests"
 test-requires = "pytest"
 
 # Don't test Python 3.8 wheels on macOS/arm64
-test-skip="cp38-macosx_*:arm64"
+test-skip = "cp38-macosx_*:arm64"
 
 # Needed for full C++17 support
 [tool.cibuildwheel.macos.environment]
