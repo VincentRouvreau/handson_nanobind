@@ -1,0 +1,36 @@
+name: Pip
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build with Pip
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.8", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Set min macOS version
+        run: |
+          echo "MACOSX_DEPLOYMENT_TARGET=10.14" >> $GITHUB_ENV
+
+      - name: Install third parties
+        run: |
+          brew update
+          brew install boost
+
+      - name: Build and install
+        run: |
+          python -m pip install pytest
+          pip install --verbose .
+
+      - name: Test
+        run: python -m pytest
