@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: Build with Pip
+    name: Build with pip on Ubuntu
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

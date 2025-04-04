@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: Build with Pip
+    name: Build with pip on OSx
     runs-on: macos-latest
     strategy:
       fail-fast: false
