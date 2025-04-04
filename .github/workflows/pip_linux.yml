@@ -20,8 +20,8 @@ jobs:
 
       - name: Install third parties
         run: |
-          apt update -y
-          apt install -y libboost-all-dev
+          sudo apt update -y
+          sudo apt install -y libboost-all-dev
 
       - name: Build and install
         run: |
