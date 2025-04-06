@@ -30,7 +30,7 @@ jobs:
         uses: pypa/cibuildwheel@v2.23.2
         env:
           CIBW_TEST_REQUIRES: pytest
-          CIBW_TEST_COMMAND: "pytest"
+          CIBW_TEST_COMMAND: "pytest {project}"
         # env:
         #   CIBW_SOME_OPTION: value
         #    ...

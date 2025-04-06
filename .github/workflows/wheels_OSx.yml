@@ -29,7 +29,7 @@ jobs:
         env:
           CIBW_BEFORE_ALL: "brew update && brew install boost"
           CIBW_TEST_REQUIRES: pytest
-          CIBW_TEST_COMMAND: "pytest"
+          CIBW_TEST_COMMAND: "pytest {project}"
         # env:
         #   CIBW_SOME_OPTION: value
         #    ...
