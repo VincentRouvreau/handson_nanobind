@@ -15,19 +15,6 @@ jobs:
           - os: windows-latest
             python: 310
             platform_id: win_amd64
-          - os: windows-latest
-            python: 311
-            platform_id: win_amd64
-          - os: windows-latest
-            python: 312
-            platform_id: win_amd64
-          - os: windows-latest
-            python: 313
-            platform_id: win_amd64
-          - os: windows-latest
-            python: 313t
-            platform_id: win_amd64
-            free_threaded_support: True
 
     steps:
       - uses: actions/checkout@v4

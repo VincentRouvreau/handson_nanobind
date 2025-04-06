@@ -15,37 +15,11 @@ jobs:
           - os: macos-13
             python: 310
             platform_id: macosx_x86_64
-          - os: macos-13
-            python: 311
-            platform_id: macosx_x86_64
-          - os: macos-13
-            python: 312
-            platform_id: macosx_x86_64
-          - os: macos-13
-            python: 313
-            platform_id: macosx_x86_64
-          - os: macos-13
-            python: 313t
-            platform_id: macosx_x86_64
-            free_threaded_support: True
 
           # MacOS arm64
           - os: macos-14
             python: 310
             platform_id: macosx_arm64
-          - os: macos-14
-            python: 311
-            platform_id: macosx_arm64
-          - os: macos-14
-            python: 312
-            platform_id: macosx_arm64
-          - os: macos-14
-            python: 313
-            platform_id: macosx_arm64
-          - os: macos-14
-            python: 313t
-            platform_id: macosx_arm64
-            free_threaded_support: True
 
     steps:
       - uses: actions/checkout@v4
