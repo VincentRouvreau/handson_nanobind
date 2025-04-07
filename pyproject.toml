@@ -31,7 +31,7 @@ build-verbosity = 1
 build = "cp310-*"
 
 # Run pytest to ensure that the package was correctly built
-test-command = "pytest -vv {project}"
+test-command = "pytest -vv {project}/tests"
 test-requires = "pytest"
 
 [tool.cibuildwheel.linux]
