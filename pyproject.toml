@@ -42,7 +42,7 @@ select = "*-musllinux*"
 before-all = "apk update && apk add curl && curl -LO 'https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.gz' && tar xf boost_1_87_0.tar.gz && cd boost_1_87_0 && ./bootstrap.sh && ./b2 --with-filesystem install"
 
 [tool.cibuildwheel.macos]
-before-all = "brew update && brew install boost"
+before-all = "brew update && brew install curl && curl -LO 'https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.gz' && tar xf boost_1_87_0.tar.gz && cd boost_1_87_0 && ./bootstrap.sh && ./b2 --with-filesystem install"
 
 [tool.cibuildwheel.windows]
 before-all = "set VCPKG_BUILD_TYPE=release && vcpkg install boost-filesystem --triplet x64-windows && ls 'C:\\vcpkg\\installed\\x64-windows\\bin'"
