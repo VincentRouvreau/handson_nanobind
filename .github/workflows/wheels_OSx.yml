@@ -24,6 +24,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Homebrew
+        run: |
+          echo 'Updating Homebrew...'
+          brew update
+          echo 'Installing dependencies...'
+          brew install curl
+
+      - name: Download and Install Boost
+        run: |
+          echo 'Downloading Boost...'
+          curl -LO 'https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.gz'
+          echo 'Extracting Boost...'
+          tar xf boost_1_87_0.tar.gz
+          cd boost_1_87_0
+          echo 'Bootstrapping Boost...'
+          ./bootstrap.sh
+          echo 'Building and installing Boost...'
+          ./b2 --with-filesystem install
+
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.23.2
         env:
