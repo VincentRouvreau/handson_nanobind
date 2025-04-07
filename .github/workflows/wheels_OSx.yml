@@ -27,6 +27,7 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.23.2
         env:
+          CIBW_BUILD: cp310-*
           CIBW_BEFORE_ALL: "brew update && brew install boost"
           CIBW_TEST_REQUIRES: pytest
           CIBW_TEST_COMMAND: "pytest {project}"
