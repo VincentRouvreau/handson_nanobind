@@ -22,7 +22,7 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.23.2
         env:
-          CIBW_BUILD: cp310-*
+          CIBW_BUILD: cp${{ matrix.python }}-${{ matrix.platform_id }}
           SKBUILD_CMAKE_DEFINE: "VCPKG_TARGET_TRIPLET=x64-windows;CMAKE_TOOLCHAIN_FILE='c:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake'"
         # env:
         #   CIBW_SOME_OPTION: value
