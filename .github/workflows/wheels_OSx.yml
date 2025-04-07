@@ -28,7 +28,7 @@ jobs:
         uses: pypa/cibuildwheel@v2.23.2
         env:
           CIBW_BUILD: cp310-*
-          MACOSX_DEPLOYMENT_TARGET: 10.13
+          CIBW_ENVIRONMENT_MACOS: MACOSX_DEPLOYMENT_TARGET="10.13"
         # env:
         #   CIBW_SOME_OPTION: value
         #    ...
