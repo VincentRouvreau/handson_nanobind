@@ -19,19 +19,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install third parties
-        run: |
-          set VCPKG_BUILD_TYPE=release
-          vcpkg install boost-filesystem --triplet x64-windows
-          vcpkg version
-          ls "C:\vcpkg\installed\x64-windows\bin\"
-
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.23.2
         env:
           CIBW_BUILD: cp310-*
-          CIBW_TEST_REQUIRES: pytest
-          CIBW_TEST_COMMAND: "pytest {project}"
         # env:
         #   CIBW_SOME_OPTION: value
         #    ...

@@ -29,12 +29,7 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.23.2
         env:
-          CIBW_MANYLINUX_X86_64_IMAGE: ${{ matrix.manylinux_image }}
-          CIBW_MANYLINUX_I686_IMAGE: ${{ matrix.manylinux_image }}
           CIBW_BUILD: cp310-*
-          CIBW_BEFORE_ALL: 'yum -y update && yum -y install curl && curl -LO "https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.gz" && tar xf boost_1_87_0.tar.gz && cd boost_1_87_0 && ./bootstrap.sh && ./b2 --with-filesystem install'
-          CIBW_TEST_REQUIRES: pytest
-          CIBW_TEST_COMMAND: "pytest {project}"
         #   CIBW_SOME_OPTION: value
         #    ...
         # with:

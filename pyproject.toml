@@ -30,12 +30,19 @@ wheel.py-api = "cp312"
 build-verbosity = 1
 
 # Run pytest to ensure that the package was correctly built
-test-command = "pytest {project}/tests"
+test-command = "pytest -vv {project}"
 test-requires = "pytest"
 
-# Don't test Python 3.8 wheels on macOS/arm64
-test-skip = "cp38-macosx_*:arm64"
+[tool.cibuildwheel.linux]
+before-all = "yum -y update && yum -y install curl && curl -LO 'https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.gz' && tar xf boost_1_87_0.tar.gz && cd boost_1_87_0 && ./bootstrap.sh && ./b2 --with-filesystem install"
 
-# Needed for full C++17 support
-[tool.cibuildwheel.macos.environment]
-MACOSX_DEPLOYMENT_TARGET = "10.14"
+[[tool.cibuildwheel.overrides]]
+select = "*-musllinux*"
+before-all = "apk update && apk add curl && curl -LO 'https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.gz' && tar xf boost_1_87_0.tar.gz && cd boost_1_87_0 && ./bootstrap.sh && ./b2 --with-filesystem install"
+
+[tool.cibuildwheel.macos]
+before-all = "brew update && brew install boost"
+environment = { MACOSX_DEPLOYMENT_TARGET = "13.0" }
+
+[tool.cibuildwheel.windows]
+before-all = "set VCPKG_BUILD_TYPE=release && vcpkg install boost-filesystem --triplet x64-windows && ls 'C:\\vcpkg\\installed\\x64-windows\\bin'"
