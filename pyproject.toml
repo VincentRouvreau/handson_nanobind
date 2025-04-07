@@ -28,6 +28,7 @@ wheel.py-api = "cp312"
 [tool.cibuildwheel]
 # Necessary to see build output from the actual compilation
 build-verbosity = 1
+build = "cp310-*"
 
 # Run pytest to ensure that the package was correctly built
 test-command = "pytest -vv {project}"
@@ -42,7 +43,6 @@ before-all = "apk update && apk add curl && curl -LO 'https://archives.boost.io/
 
 [tool.cibuildwheel.macos]
 before-all = "brew update && brew install boost"
-environment = { MACOSX_DEPLOYMENT_TARGET = "13.0" }
 
 [tool.cibuildwheel.windows]
 before-all = "set VCPKG_BUILD_TYPE=release && vcpkg install boost-filesystem --triplet x64-windows && ls 'C:\\vcpkg\\installed\\x64-windows\\bin'"

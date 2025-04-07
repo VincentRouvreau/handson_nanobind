@@ -35,6 +35,7 @@ find_package(nanobind CONFIG REQUIRED)
 
 set (CMAKE_CXX_STANDARD 17)
 
+message("$$$$$ CMAKE_BUILD_TYPE = ${CMAKE_BUILD_TYPE}")
 find_package(Boost 1.71.0 OPTIONAL_COMPONENTS filesystem)
 
 # We are now ready to compile the actual extension module
