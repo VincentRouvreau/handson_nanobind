@@ -27,12 +27,11 @@ jobs:
 
       - name: Build and install
         env:
-          CIBW_BUILD: cp${{ matrix.python }}-${{ matrix.platform_id }}
           SKBUILD_CMAKE_DEFINE: "VCPKG_TARGET_TRIPLET=x64-windows;CMAKE_TOOLCHAIN_FILE='c:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake'"
         run: |
           python -m pip install repairwheel
           pip wheel --verbose .
-          repairwheel nanobind_example*.whl -o wheelout
+          repairwheel 'nanobind_example*.whl' -o wheelout
           pip install wheelout/*.whl
 
       - name: Test
