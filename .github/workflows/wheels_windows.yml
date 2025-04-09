@@ -23,8 +23,8 @@ jobs:
         uses: pypa/cibuildwheel@v2.23.2
         env:
           # Skip 32-bit builds
-          CIBW_SKIP: "*-win32"
-          CIBW_TEST_SKIP: "*-win32"
+          CIBW_SKIP: "*win32"
+          CIBW_TEST_SKIP: "*win32"
           CIBW_BUILD: cp${{ matrix.python }}-${{ matrix.platform_id }}
           CIBW_TEST_REQUIRES: pytest
           CIBW_TEST_COMMAND: "pytest -vv {project}/tests"
