@@ -30,6 +30,8 @@ jobs:
         uses: pypa/cibuildwheel@v2.23.2
         env:
           CIBW_BUILD: cp${{ matrix.python }}-${{ matrix.platform_id }}
+          CIBW_TEST_REQUIRES: pytest
+          CIBW_TEST_COMMAND: "pytest -vv {project}/tests"
         #   CIBW_SOME_OPTION: value
         #    ...
         # with:

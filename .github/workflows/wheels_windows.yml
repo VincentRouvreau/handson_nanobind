@@ -23,9 +23,11 @@ jobs:
         uses: pypa/cibuildwheel@v2.23.2
         env:
           # Skip 32-bit builds
-          CIBW_SKIP: "*-win32 *-win_arm64"
-          CIBW_TEST_SKIP: "*-win32 *-win_arm64"
+          CIBW_SKIP: "*-win32"
+          CIBW_TEST_SKIP: "*-win32"
           CIBW_BUILD: cp${{ matrix.python }}-${{ matrix.platform_id }}
+          CIBW_TEST_REQUIRES: pytest
+          CIBW_TEST_COMMAND: "pytest -vv {project}/tests"
           SKBUILD_CMAKE_DEFINE: "CMAKE_TOOLCHAIN_FILE='c:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake'"
         #  SKBUILD_CMAKE_DEFINE: "VCPKG_TARGET_TRIPLET=x64-windows;CMAKE_TOOLCHAIN_FILE='c:\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake'"
         # env:

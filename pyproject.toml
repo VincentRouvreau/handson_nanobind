@@ -25,14 +25,6 @@ build-dir = "build/{wheel_tag}"
 # Build stable ABI wheels for CPython 3.12+
 wheel.py-api = "cp312"
 
-[tool.cibuildwheel]
-# Necessary to see build output from the actual compilation
-build-verbosity = 1
-
-# Run pytest to ensure that the package was correctly built
-test-command = "pytest -vv {project}/tests"
-test-requires = "pytest"
-
 [tool.cibuildwheel.linux]
 before-all = "yum -y update && yum -y install curl && curl -LO 'https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.gz' && tar xf boost_1_87_0.tar.gz && cd boost_1_87_0 && ./bootstrap.sh && ./b2 --with-filesystem install"
 
